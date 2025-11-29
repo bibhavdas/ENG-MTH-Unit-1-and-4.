@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calculus & Vector Algebra Solutions</title>
+    <title>Unit I & IV: Differential Calculus & Vector Algebra</title>
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <style>
@@ -11,172 +11,296 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             line-height: 1.6;
             color: #333;
-            max-width: 800px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
-            background-color: #f9f9f9;
+            background-color: #f4f7f6;
         }
-        h1 {
+        h1, h2 {
             text-align: center;
             color: #2c3e50;
-            border-bottom: 2px solid #2c3e50;
-            padding-bottom: 10px;
         }
-        h2 {
-            color: #2980b9;
-            margin-top: 30px;
-            border-bottom: 1px solid #ddd;
+        h1 { margin-bottom: 10px; }
+        .subtitle {
+            text-align: center;
+            margin-bottom: 40px;
+            color: #7f8c8d;
         }
-        .problem-box {
-            background-color: #fff;
-            border: 1px solid #ddd;
+        .card {
+            background: white;
+            border-radius: 8px;
             padding: 20px;
-            border-radius: 5px;
             margin-bottom: 20px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
         }
-        .answer {
+        .question-title {
+            font-weight: bold;
+            color: #2980b9;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+        }
+        .btn-toggle {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-top: 10px;
+            transition: background 0.3s;
+        }
+        .btn-toggle:hover {
+            background-color: #2980b9;
+        }
+        .answer-section {
+            display: none;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px dashed #ccc;
+            background-color: #fdfdfd;
+        }
+        .final-ans {
             font-weight: bold;
             color: #27ae60;
         }
-        code {
-            background-color: #f4f4f4;
-            padding: 2px 5px;
-            border-radius: 3px;
-        }
-        @media print {
-            body { background-color: white; }
-            .problem-box { box-shadow: none; border: 1px solid #ccc; page-break-inside: avoid; }
-        }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 5px; }
     </style>
+    <script>
+        function toggleAnswer(id) {
+            var x = document.getElementById(id);
+            var btn = document.getElementById('btn-' + id);
+            if (x.style.display === "block") {
+                x.style.display = "none";
+                btn.innerHTML = "Show Answer";
+            } else {
+                x.style.display = "block";
+                btn.innerHTML = "Hide Answer";
+            }
+        }
+    </script>
 </head>
 <body>
 
-    <h1>Unit I & IV: Calculus & Vector Algebra Solutions</h1>
-    <p><em>Differential Calculus & Vector Algebra</em></p>
+    <h1>Unit I & IV: Differential Calculus & Vector Algebra</h1>
+    <p class="subtitle">Practice Questions & Solutions</p>
 
-    <!-- Q1 -->
-    <div class="problem-box">
-        <h2>Q1: Limits</h2>
-        <p><strong>1. Show that \(\lim_{x\to 1} [x]\) does not exist.</strong></p>
-        <ul>
-            <li><strong>LHL (\(x \to 1^-\)):</strong> The greatest integer less than 1 (e.g., 0.99) is 0.</li>
-            <li><strong>RHL (\(x \to 1^+\)):</strong> The greatest integer slightly more than 1 (e.g., 1.01) is 1.</li>
-            <li>Since \(0 \neq 1\), the limit does not exist.</li>
-        </ul>
-
-        <p><strong>2. Show that \(\lim_{x\to 0} \frac{|x|}{x}\) does not exist.</strong></p>
-        <ul>
-            <li><strong>LHL (\(x < 0\)):</strong> \(|x| = -x\), so \(\frac{-x}{x} = -1\).</li>
-            <li><strong>RHL (\(x > 0\)):</strong> \(|x| = x\), so \(\frac{x}{x} = 1\).</li>
-            <li>Since \(-1 \neq 1\), the limit does not exist.</li>
-        </ul>
+    <div class="card">
+        <div class="question-title">Q1: Limits Existence</div>
+        <p>Show that the following limits do not exist:</p>
+        <ol>
+            <li>\(\lim_{x\to 1} [x]\) where \([x]\) denotes the greatest integer not exceeding \(x\).</li>
+            <li>\(\lim_{x\to 0} \frac{|x|}{x}\).</li>
+        </ol>
+        <button id="btn-a1" class="btn-toggle" onclick="toggleAnswer('a1')">Show Answer</button>
+        <div id="a1" class="answer-section">
+            <p><strong>1. For \(\lim_{x\to 1} [x]\):</strong></p>
+            <ul>
+                <li>LHL (\(x \to 1^-\)): The value is approaching 1 from the left (e.g., 0.99), so \([x] = 0\).</li>
+                <li>RHL (\(x \to 1^+\)): The value is approaching 1 from the right (e.g., 1.01), so \([x] = 1\).</li>
+                <li>Since \(LHL \neq RHL\), the limit does not exist.</li>
+            </ul>
+            <p><strong>2. For \(\lim_{x\to 0} \frac{|x|}{x}\):</strong></p>
+            <ul>
+                <li>LHL (\(x < 0\)): \(|x| = -x\), so the limit is \(-1\).</li>
+                <li>RHL (\(x > 0\)): \(|x| = x\), so the limit is \(1\).</li>
+                <li>Since \(-1 \neq 1\), the limit does not exist.</li>
+            </ul>
+        </div>
     </div>
 
-    <!-- Q2 -->
-    <div class="problem-box">
-        <h2>Q2: nth Derivative</h2>
-        <p>If \(y =(ax+b)^m\), find \(y_n\).</p>
-        <p>Differentiating successively:</p>
-        <ul>
-            <li>\(y_1 = m(ax+b)^{m-1} \cdot a\)</li>
-            <li>\(y_2 = m(m-1)(ax+b)^{m-2} \cdot a^2\)</li>
-        </ul>
-        <p>Pattern for \(n\)th derivative:</p>
-        <p class="answer">$$ y_n = \frac{m!}{(m-n)!} a^n (ax+b)^{m-n} $$</p>
+    <div class="card">
+        <div class="question-title">Q2: nth Derivative</div>
+        <p>If \(y =(ax+b)^m\), then find \(y_n\).</p>
+        <button id="btn-a2" class="btn-toggle" onclick="toggleAnswer('a2')">Show Answer</button>
+        <div id="a2" class="answer-section">
+            <p>Differentiating successively:</p>
+            <ul>
+                <li>\(y_1 = m(ax+b)^{m-1} \cdot a\)</li>
+                <li>\(y_2 = m(m-1)(ax+b)^{m-2} \cdot a^2\)</li>
+                <li>\(y_3 = m(m-1)(m-2)(ax+b)^{m-3} \cdot a^3\)</li>
+            </ul>
+            <p>Following this pattern for the \(n\)th derivative:</p>
+            <p class="final-ans">$$ y_n = \frac{m!}{(m-n)!} a^n (ax+b)^{m-n} $$</p>
+        </div>
     </div>
 
-    <!-- Q3 Part 1 -->
-    <div class="problem-box">
-        <h2>Q3 (Part A): Leibniz Theorem</h2>
-        <p>If \(y =e^{m \sin^{-1}x}\), show \((1 -x^2)y_{n+2} -(2n +1)xy_{n+1} -(n^2 +m^2)y_n =0\).</p>
-        <p>1. Differentiate once: \(y_1 = \frac{my}{\sqrt{1-x^2}} \implies (1-x^2)y_1^2 = m^2y^2\).</p>
-        <p>2. Differentiate again: \((1-x^2)2y_1y_2 - 2xy_1^2 = m^2 2yy_1\).</p>
-        <p>3. Simplify: \((1-x^2)y_2 - xy_1 - m^2y = 0\).</p>
-        <p>4. Apply Leibniz Theorem \(n\) times:</p>
-        <p>$$ [(1-x^2)y_{n+2} + n(-2x)y_{n+1} + \frac{n(n-1)}{2}(-2)y_n] - [xy_{n+1} + ny_n] - m^2y_n = 0 $$</p>
-        <p>Collecting terms proves the result.</p>
+    <div class="card">
+        <div class="question-title">Q3 (Part A): Leibniz Theorem</div>
+        <p>If \(y =e^{m \sin^{-1}x}\), then show that \((1 -x^2)y_{n+2} -(2n +1)xy_{n+1} -(n^2 +m^2)y_n =0\).</p>
+        <button id="btn-a3" class="btn-toggle" onclick="toggleAnswer('a3')">Show Answer</button>
+        <div id="a3" class="answer-section">
+            <p><strong>Step 1:</strong> Find \(y_1\) and \(y_2\).</p>
+            <p>\(y_1 = \frac{my}{\sqrt{1-x^2}} \implies (1-x^2)y_1^2 = m^2y^2\)</p>
+            <p>Differentiating again: \((1-x^2)2y_1y_2 - 2xy_1^2 = 2m^2yy_1\)</p>
+            <p>Divide by \(2y_1\): \((1-x^2)y_2 - xy_1 - m^2y = 0\)</p>
+            <p><strong>Step 2:</strong> Apply Leibniz Theorem \(n\) times.</p>
+            <p>$$ D^n[(1-x^2)y_2] - D^n[xy_1] - D^n[m^2y] = 0 $$</p>
+            <p>$$ [(1-x^2)y_{n+2} + n(-2x)y_{n+1} + \frac{n(n-1)}{2}(-2)y_n] - [xy_{n+1} + n(1)y_n] - m^2y_n = 0 $$</p>
+            <p>Simplifying the terms yields the required equation.</p>
+        </div>
     </div>
 
-    <!-- Q3 Part 2 -->
-    <div class="problem-box">
-        <h2>Q3 (Part B): Leibniz Theorem</h2>
-        <p>If \(y =\tan^{-1}x\), show \((1 +x^2)y_{n+2} +2x(n +1)y_{n+1} +n(n +1)y_n =0\).</p>
-        <p>1. \(y_1 = \frac{1}{1+x^2} \implies (1+x^2)y_1 = 1\).</p>
-        <p>2. Differentiate: \((1+x^2)y_2 + 2xy_1 = 0\).</p>
-        <p>3. Apply Leibniz Theorem \(n\) times:</p>
-        <p>$$ [(1+x^2)y_{n+2} + n(2x)y_{n+1} + n(n-1)y_n] + 2[xy_{n+1} + ny_n] = 0 $$</p>
-        <p>Simplify: \((1+x^2)y_{n+2} + (2nx + 2x)y_{n+1} + (n^2-n+2n)y_n = 0\).</p>
-        <p>Factor out to get the final result.</p>
+    <div class="card">
+        <div class="question-title">Q3 (Part B): Leibniz Theorem</div>
+        <p>If \(y =\tan^{-1}x\), then show that \((1 +x^2)y_{n+2} +2x(n +1)y_{n+1} +n(n +1)y_n =0\).</p>
+        <button id="btn-a4" class="btn-toggle" onclick="toggleAnswer('a4')">Show Answer</button>
+        <div id="a4" class="answer-section">
+            <p><strong>Step 1:</strong> Prepare the equation.</p>
+            <p>\(y_1 = \frac{1}{1+x^2} \implies (1+x^2)y_1 = 1\)</p>
+            <p>Differentiating again: \((1+x^2)y_2 + 2xy_1 = 0\)</p>
+            <p><strong>Step 2:</strong> Apply Leibniz Theorem \(n\) times.</p>
+            <p>$$ [(1+x^2)y_{n+2} + n(2x)y_{n+1} + n(n-1)y_n] + 2[xy_{n+1} + ny_n] = 0 $$</p>
+            <p>Group \(y_{n+1}\) terms: \(2nx + 2x = 2x(n+1)\).</p>
+            <p>Group \(y_n\) terms: \(n(n-1) + 2n = n^2 - n + 2n = n^2 + n = n(n+1)\).</p>
+            <p class="final-ans">Result Verified.</p>
+        </div>
     </div>
 
-    <!-- Q4 -->
-    <div class="problem-box">
-        <h2>Q4: Maxima and Minima</h2>
-        <p><strong>1. \(y = x^3 - 3x^2 - 9x + 12\)</strong></p>
-        <p>\(y' = 3(x^2 - 2x - 3) = 0 \implies x=3, -1\).</p>
-        <ul>
-            <li>At \(x=3\) (Min): \(y = 27 - 27 - 27 + 12 = \mathbf{-15}\)</li>
-            <li>At \(x=-1\) (Max): \(y = -1 - 3 + 9 + 12 = \mathbf{17}\)</li>
-        </ul>
-        
-        <p><strong>2. \(y = 2x^3 - 21x^2 + 36x - 20\)</strong></p>
-        <p>\(y' = 6(x^2 - 7x + 6) = 0 \implies x=6, 1\).</p>
-        <ul>
-            <li>At \(x=1\) (Max): \(y = 2 - 21 + 36 - 20 = \mathbf{-3}\)</li>
-            <li>At \(x=6\) (Min): \(y = 432 - 756 + 216 - 20 = \mathbf{-128}\)</li>
-        </ul>
+    <div class="card">
+        <div class="question-title">Q4: Maxima and Minima</div>
+        <p>Find the maximum and minimum values of the functions:</p>
+        <ol>
+            <li>\(y = x^3 - 3x^2 - 9x + 12\)</li>
+            <li>\(y = 2x^3 - 21x^2 + 36x - 20\)</li>
+        </ol>
+        <button id="btn-a5" class="btn-toggle" onclick="toggleAnswer('a5')">Show Answer</button>
+        <div id="a5" class="answer-section">
+            <p><strong>1. \(y = x^3 - 3x^2 - 9x + 12\)</strong></p>
+            <p>\(y' = 3(x^2 - 2x - 3) = 0 \implies x = 3, -1\)</p>
+            <ul>
+                <li>At \(x = -1\): Max Value = \(17\)</li>
+                <li>At \(x = 3\): Min Value = \(-15\)</li>
+            </ul>
+            <p><strong>2. \(y = 2x^3 - 21x^2 + 36x - 20\)</strong></p>
+            <p>\(y' = 6(x^2 - 7x + 6) = 0 \implies x = 6, 1\)</p>
+            <ul>
+                <li>At \(x = 1\): Max Value = \(-3\)</li>
+                <li>At \(x = 6\): Min Value = \(-128\)</li>
+            </ul>
+        </div>
     </div>
 
-    <!-- Q5 & Q6 -->
-    <div class="problem-box">
-        <h2>Q5 & Q6: Taylor's Series</h2>
-        <p><strong>Expansion of \(e^x\) (Maclaurin's):</strong></p>
-        <p class="answer">$$ e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \dots $$</p>
-
-        <p><strong>Expansion of \(\sin x\) in powers of \((x - \frac{\pi}{2})\):</strong></p>
-        <p>\(f(\frac{\pi}{2}) = 1, f'(\frac{\pi}{2}) = 0, f''(\frac{\pi}{2}) = -1, \dots\)</p>
-        <p class="answer">$$ \sin x = 1 - \frac{1}{2!}\left(x-\frac{\pi}{2}\right)^2 + \frac{1}{4!}\left(x-\frac{\pi}{2}\right)^4 - \dots $$</p>
+    <div class="card">
+        <div class="question-title">Q5: Taylor's Theorem (Exponential)</div>
+        <p>Using Taylor’s theorem, find the series expansion of \(f(x) = e^x\) in ascending powers of \(x\).</p>
+        <button id="btn-a6" class="btn-toggle" onclick="toggleAnswer('a6')">Show Answer</button>
+        <div id="a6" class="answer-section">
+            <p>This is a Maclaurin series (expansion about \(x=0\)).</p>
+            <p>\(f(x) = e^x \implies f(0) = 1\)</p>
+            <p>\(f'(x) = e^x \implies f'(0) = 1\), and so on.</p>
+            <p>Formula: \(f(x) = f(0) + xf'(0) + \frac{x^2}{2!}f''(0) + \dots\)</p>
+            <p class="final-ans">$$ e^x = 1 + x + \frac{x^2}{2!} + \frac{x^3}{3!} + \dots + \frac{x^n}{n!} + \dots $$</p>
+        </div>
     </div>
 
-    <!-- Q7 & Q8 -->
-    <div class="problem-box">
-        <h2>Q7 & Q8: Mean Value Theorems</h2>
-        <p><strong>Rolle's Theorem on \([-\sqrt{2}, \sqrt{2}]\) for \(f(x) = 2x^3 + x^2 - 4x - 2\):</strong></p>
-        <p>\(f(-\sqrt{2}) = f(\sqrt{2}) = 0\). <br>
-        \(f'(c) = 6c^2 + 2c - 4 = 0 \implies c = \frac{2}{3}, -1\). <br>
-        Both lie in the interval. Verified.</p>
-
-        <p><strong>Lagrange's MVT on \([0, 0.5]\) for \(f(x) = x(x-1)(x-2)\):</strong></p>
-        <p>\(f'(c) = \frac{f(0.5)-f(0)}{0.5-0} = \frac{0.375}{0.5} = 0.75\). <br>
-        Solving \(3c^2 - 6c + 2 = 0.75\) gives \(c \approx 0.236\), which is in \((0, 0.5)\). Verified.</p>
+    <div class="card">
+        <div class="question-title">Q6: Taylor's Theorem (Trigonometric)</div>
+        <p>Using Taylor’s theorem, find the series expansion of \(f(x) = \sin x\) in powers of \((x - \frac{\pi}{2})\).</p>
+        <button id="btn-a7" class="btn-toggle" onclick="toggleAnswer('a7')">Show Answer</button>
+        <div id="a7" class="answer-section">
+            <p>Here \(a = \pi/2\).</p>
+            <ul>
+                <li>\(f(\pi/2) = \sin(\pi/2) = 1\)</li>
+                <li>\(f'(\pi/2) = \cos(\pi/2) = 0\)</li>
+                <li>\(f''(\pi/2) = -\sin(\pi/2) = -1\)</li>
+                <li>\(f'''(\pi/2) = -\cos(\pi/2) = 0\)</li>
+                <li>\(f^{(4)}(\pi/2) = \sin(\pi/2) = 1\)</li>
+            </ul>
+            <p class="final-ans">$$ \sin x = 1 - \frac{1}{2!}\left(x-\frac{\pi}{2}\right)^2 + \frac{1}{4!}\left(x-\frac{\pi}{2}\right)^4 - \dots $$</p>
+        </div>
     </div>
 
-    <!-- Euler -->
-    <div class="problem-box">
-        <h2>Q8 (Part B): Euler's Theorem</h2>
-        <p>For \(u = \frac{x^2y^2}{x+y}\), the degree \(n = 4 - 1 = 3\).</p>
-        <p>1. Euler's 1st order: \(x\frac{\partial u}{\partial x} + y\frac{\partial u}{\partial y} = 3u\).</p>
-        <p>2. Euler's 2nd order: \(x^2 u_{xx} + 2xy u_{xy} + y^2 u_{yy} = n(n-1)u = 3(2)u = 6u\).</p>
+    <div class="card">
+        <div class="question-title">Q7: Rolle's Theorem</div>
+        <p>Verify Rolle’s theorem for \(f(x) = 2x^3 + x^2 - 4x - 2\) on \([-\sqrt{2}, \sqrt{2}]\).</p>
+        <button id="btn-a8" class="btn-toggle" onclick="toggleAnswer('a8')">Show Answer</button>
+        <div id="a8" class="answer-section">
+            <p>1. Check endpoints: \(f(\sqrt{2}) = 0\) and \(f(-\sqrt{2}) = 0\).</p>
+            <p>2. Find \(c\) such that \(f'(c) = 0\).</p>
+            <p>\(f'(x) = 6x^2 + 2x - 4\).</p>
+            <p>\(6c^2 + 2c - 4 = 0 \implies 3c^2 + c - 2 = 0\).</p>
+            <p>Factors: \((3c-2)(c+1) = 0\).</p>
+            <p>\(c = 2/3\) or \(c = -1\).</p>
+            <p>Both values lie in the interval \((-\sqrt{2}, \sqrt{2})\). Theorem verified.</p>
+        </div>
     </div>
 
-    <!-- Vector Algebra -->
-    <div class="problem-box">
-        <h2>Q9, Q10, Q11: Vector Algebra</h2>
-        
-        <p><strong>Q9: Divergence and Curl</strong> at \((1, -1, 1)\)</p>
-        <p>Div: \(\nabla \cdot \vec{v} = 2xyz + 6xy + (x-y) = -2 -6 + 2 = \mathbf{-6}\).</p>
-        <p>Curl: \(\nabla \times \vec{v} = -\hat{i} - 2\hat{j} + 2\hat{k}\).</p>
+    <div class="card">
+        <div class="question-title">Q8 (Part A): Lagrange's Mean Value Theorem</div>
+        <p>Verify Lagrange’s mean value theorem for \(f(x) = x(x -1)(x -2)\) on \([0, \frac{1}{2}]\).</p>
+        <button id="btn-a9" class="btn-toggle" onclick="toggleAnswer('a9')">Show Answer</button>
+        <div id="a9" class="answer-section">
+            <p>\(f(x) = x^3 - 3x^2 + 2x\). Derivative: \(f'(x) = 3x^2 - 6x + 2\).</p>
+            <p>\(a = 0, b = 0.5\). \(f(0) = 0\), \(f(0.5) = 0.375\).</p>
+            <p>Formula: \(f'(c) = \frac{f(b)-f(a)}{b-a} = \frac{0.375}{0.5} = 0.75\).</p>
+            <p>\(3c^2 - 6c + 2 = 0.75 \implies 12c^2 - 24c + 5 = 0\).</p>
+            <p>Solving for \(c\) gives \(c \approx 0.236\), which is inside \([0, 0.5]\). Verified.</p>
+        </div>
+    </div>
 
-        <p><strong>Q10: Coplanar Vectors</strong></p>
-        <p>Scalar triple product \([\vec{a}\vec{b}\vec{c}] = 0\).</p>
-        <p>\(\begin{vmatrix} 1 & -1 & 1 \\ 1 & 2 & -1 \\ 3 & p & 5 \end{vmatrix} = 0 \implies 2p = -12 \implies \mathbf{p = -6}\).</p>
+    <div class="card">
+        <div class="question-title">Q8 (Part B): Euler's Theorem</div>
+        <p>Let \(u = \frac{x^2y^2}{x+y}\). Apply Euler’s theorem to find \(x \frac{\partial u}{\partial x} + y \frac{\partial u}{\partial y}\). Hence show second order relation equals \(6u\).</p>
+        <button id="btn-a10" class="btn-toggle" onclick="toggleAnswer('a10')">Show Answer</button>
+        <div id="a10" class="answer-section">
+            <p>The function is homogeneous of degree \(n = (2+2) - 1 = 3\).</p>
+            <p><strong>First Order:</strong> \(x \frac{\partial u}{\partial x} + y \frac{\partial u}{\partial y} = nu = 3u\).</p>
+            <p><strong>Second Order:</strong></p>
+            <p>Formula: \(x^2 u_{xx} + 2xy u_{xy} + y^2 u_{yy} = n(n-1)u\).</p>
+            <p>Substitute \(n=3\): \(3(3-1)u = 6u\).</p>
+            <p class="final-ans">Shown: LHS = 6u</p>
+        </div>
+    </div>
 
-        <p><strong>Q11: Unit Normal</strong> at \((1, 2, -1)\)</p>
-        <p>Surface: \(x^3 - y^3 + 3xyz = 1\).</p>
-        <p>\(\nabla \phi = (3x^2+3yz)\hat{i} + (-3y^2+3xz)\hat{j} + (3xy)\hat{k}\).</p>
-        <p>At point: \(-3\hat{i} - 15\hat{j} + 6\hat{k}\). Magnitude = \(\sqrt{270} = 3\sqrt{30}\).</p>
-        <p class="answer">$$ \hat{n} = \frac{-\hat{i} - 5\hat{j} + 2\hat{k}}{\sqrt{30}} $$</p>
+    <div class="card">
+        <div class="question-title">Q9: Divergence and Curl</div>
+        <p>Find the divergence and curl of \(\vec{v} = x^2yz \hat{i} + 3xy^2 \hat{j} + (xz - yz) \hat{k}\) at \((1, -1, 1)\).</p>
+        <button id="btn-a11" class="btn-toggle" onclick="toggleAnswer('a11')">Show Answer</button>
+        <div id="a11" class="answer-section">
+            <p><strong>Divergence (\(\nabla \cdot \vec{v}\)):</strong></p>
+            <p>\(\frac{\partial}{\partial x}(x^2yz) + \frac{\partial}{\partial y}(3xy^2) + \frac{\partial}{\partial z}(xz-yz)\)</p>
+            <p>\(= 2xyz + 6xy + (x-y)\)</p>
+            <p>At \((1, -1, 1) = -2 - 6 + 2 = \mathbf{-6}\).</p>
+            <p><strong>Curl (\(\nabla \times \vec{v}\)):</strong></p>
+            <p>Calculated vector: \(-z\hat{i} + (x^2y - z)\hat{j} + (3y^2 - x^2z)\hat{k}\)</p>
+            <p>At \((1, -1, 1)\): \(-1\hat{i} + (-1-1)\hat{j} + (3-1)\hat{k}\)</p>
+            <p class="final-ans">$$ -\hat{i} - 2\hat{j} + 2\hat{k} $$</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question-title">Q10: Coplanar Vectors</div>
+        <p>Find \(p\) so that \(\vec{a} = \hat{i} - \hat{j} + \hat{k}\), \(\vec{b} = \hat{i} + 2\hat{j} - \hat{k}\), and \(\vec{c} = 3\hat{i} + p\hat{j} + 5\hat{k}\) are coplanar.</p>
+        <button id="btn-a12" class="btn-toggle" onclick="toggleAnswer('a12')">Show Answer</button>
+        <div id="a12" class="answer-section">
+            <p>For coplanar vectors, the scalar triple product is zero.</p>
+            <p>$$ \begin{vmatrix} 1 & -1 & 1 \\ 1 & 2 & -1 \\ 3 & p & 5 \end{vmatrix} = 0 $$</p>
+            <p>\(1(10 - (-p)) - (-1)(5 - (-3)) + 1(p - 6) = 0\)</p>
+            <p>\(10 + p + 8 + p - 6 = 0\)</p>
+            <p>\(2p + 12 = 0 \implies 2p = -12\)</p>
+            <p class="final-ans">$$ p = -6 $$</p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="question-title">Q11: Normal to Surface</div>
+        <p>Find the unit normal to the surface \(x^3 - y^3 + 3xyz = 1\) at \((1, 2, -1)\).</p>
+        <button id="btn-a13" class="btn-toggle" onclick="toggleAnswer('a13')">Show Answer</button>
+        <div id="a13" class="answer-section">
+            <p>Let \(\phi = x^3 - y^3 + 3xyz - 1\).</p>
+            <p>\(\nabla \phi = (3x^2+3yz)\hat{i} + (-3y^2+3xz)\hat{j} + (3xy)\hat{k}\)</p>
+            <p>At \((1, 2, -1)\):</p>
+            <ul>
+                <li>\(i\)-component: \(3 - 6 = -3\)</li>
+                <li>\(j\)-component: \(-12 - 3 = -15\)</li>
+                <li>\(k\)-component: \(6\)</li>
+            </ul>
+            <p>Normal vector \(\vec{n} = -3\hat{i} - 15\hat{j} + 6\hat{k}\).</p>
+            <p>Magnitude \(|\vec{n}| = \sqrt{9 + 225 + 36} = \sqrt{270} = 3\sqrt{30}\).</p>
+            <p class="final-ans">$$ \hat{n} = \frac{-\hat{i} - 5\hat{j} + 2\hat{k}}{\sqrt{30}} $$</p>
+        </div>
     </div>
 
 </body>
